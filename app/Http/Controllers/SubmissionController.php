@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class SubmissionController extends Controller
 {
+    public function index()
+    {
+        $submissions = Submission::latest()->get();
+        
+        return view('report', compact('submissions'));
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([

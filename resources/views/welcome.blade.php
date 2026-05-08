@@ -248,6 +248,11 @@
 </head>
 <body>
   <main class="container">
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+      <a href="/admin/report" class="badge" style="text-decoration: none; background: var(--primary); color: white; padding: 10px 20px;">
+          Go to Admin Reports &rarr;
+      </a>
+  </div>
     <header class="header">
       <div class="badge">HRIA / HRSO</div>
       <h1>HRIA Scholar Talent Network Form</h1>

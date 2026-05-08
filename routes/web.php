@@ -7,3 +7,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::post('/submit-form', [SubmissionController::class, 'store']);
+Route::get('/admin/report', [SubmissionController::class, 'index']);
