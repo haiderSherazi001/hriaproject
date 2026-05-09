@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('submissions', function (Blueprint $table) {
             $table->id();
             $table->string('full_name');
+            $table->string('father_name'); 
+            $table->text('address');
             $table->string('city');
             $table->string('whatsapp');
             $table->string('photo_path')->nullable();
@@ -22,8 +24,8 @@ return new class extends Migration
             $table->string('batch');
             $table->string('job_role')->nullable();
             $table->string('company')->nullable();
-            $table->text('skills');
-            $table->text('achievement');
+            $table->text('skills')->nullable();
+            $table->text('achievement')->nullable();
             $table->json('contributions');
             $table->string('availability');
             $table->string('seriousness');

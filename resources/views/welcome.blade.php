@@ -248,11 +248,13 @@
 </head>
 <body>
   <main class="container">
+    @auth
     <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
       <a href="/admin/report" class="badge" style="text-decoration: none; background: var(--primary); color: white; padding: 10px 20px;">
           Go to Admin Reports &rarr;
       </a>
   </div>
+  @endauth
     <header class="header">
       <div class="badge">HRIA / HRSO</div>
       <h1>HRIA Scholar Talent Network Form</h1>
@@ -270,6 +272,11 @@
         </div>
 
         <div class="field">
+          <label for="fatherName">Father's Name <span class="required">*</span></label>
+          <input id="fatherName" name="father_name" type="text" required placeholder="Enter father's name" />
+        </div>
+
+        <div class="field">
           <label for="city">City <span class="required">*</span></label>
           <input id="city" name="city" type="text" required placeholder="Example: Lahore" />
         </div>
@@ -277,6 +284,11 @@
         <div class="field">
           <label for="whatsapp">Working WhatsApp Number <span class="required">*</span></label>
           <input id="whatsapp" name="whatsapp" type="tel" required placeholder="Example: 03XX-XXXXXXX" />
+        </div>
+
+        <div class="field full">
+          <label for="address">Complete Address <span class="required">*</span></label>
+          <textarea id="address" name="address" required placeholder="Enter your current residential address" style="min-height: 80px;"></textarea>
         </div>
 
         <div class="field">
@@ -320,13 +332,13 @@
         </div>
 
         <div class="field full">
-          <label for="skills">Top Skills / Certifications <span class="required">*</span></label>
+          <label for="skills">Top Skills / Certifications</label>
           <p class="hint">Mention your strongest skills, technical abilities, professional certifications, or special expertise.</p>
           <textarea id="skills" name="skills" required placeholder="Example: Graphic design, teaching, digital marketing, Python, public speaking, leadership..."></textarea>
         </div>
 
         <div class="field full">
-          <label for="achievement">Major Achievement <span class="required">*</span></label>
+          <label for="achievement">Major Achievement</label>
           <p class="hint">Academic, professional, business, leadership, or social contribution.</p>
           <textarea id="achievement" name="achievement" required placeholder="Briefly describe one major achievement that shows your capability."></textarea>
         </div>
