@@ -42,6 +42,7 @@ class SubmissionFactory extends Factory
                 'No, only want to stay connected'
             ]),
             'suggestions' => fake()->optional()->sentence(),
+            'created_at' => fake()->dateTimeBetween('-1 year', 'now'),
         ];
     }
 }
