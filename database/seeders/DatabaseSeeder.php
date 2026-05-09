@@ -25,5 +25,7 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make(env('ADMIN_DEFAULT_PASSWORD', 'fallback_password')), 
             ]);
         }
+
+        Submission::factory(50)->create();
     }
 }

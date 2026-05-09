@@ -227,6 +227,12 @@
         </div>
 
         <div class="filter-group" style="flex-direction: row; align-items: center; padding-bottom: 2px;">
+            <label for="timeframe">Chart View</label>
+            <select name="timeframe" id="timeframe">
+                <option value="daily" {{ $timeframe == 'daily' ? 'selected' : '' }}>Daily</option>
+                <option value="monthly" {{ $timeframe == 'monthly' ? 'selected' : '' }}>Monthly</option>
+                <option value="yearly" {{ $timeframe == 'yearly' ? 'selected' : '' }}>Yearly</option>
+            </select>
             <button type="submit" class="btn-custom btn-primary-custom" style="padding: 10px 24px;">Apply Filters</button>
             
             @if(request()->filled('city') || request()->filled('batch') || request()->filled('status'))
@@ -267,6 +273,13 @@
         <div class="stat-card">
             <div class="stat-title">Dominant Batch</div>
             <div class="stat-value" style="font-size: 28px;">{{ $stats['top_batch'] }}</div>
+        </div>
+    </div>
+
+    <div style="background: var(--card-bg); padding: 24px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 30px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+        <div style="color: var(--text-muted); font-size: 14px; font-weight: 600; text-transform: uppercase; margin-bottom: 16px;">Registration Growth</div>
+        <div style="position: relative; height: 300px; width: 100%;">
+            <canvas id="growthChart"></canvas>
         </div>
     </div>
 
@@ -340,6 +353,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
     $(document).ready(function() {
@@ -359,6 +373,47 @@
                 searchPlaceholder: "Search any field..." 
             }
         });
+    });
+</script>
+<script>
+    const labels = {!! json_encode($chartLabels) !!};
+    const dataValues = {!! json_encode($chartValues) !!};
+
+    const ctx = document.getElementById('growthChart').getContext('2d');
+    
+    new Chart(ctx, {
+        type: 'line', 
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Submissions',
+                data: dataValues,
+                borderColor: '#7a4f22', 
+                backgroundColor: 'rgba(122, 79, 34, 0.1)',
+                borderWidth: 2,
+                pointBackgroundColor: '#fff',
+                pointBorderColor: '#7a4f22',
+                pointRadius: 4,
+                fill: true, 
+                tension: 0.3 
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false } 
+            },
+            scales: {
+                y: { 
+                    beginAtZero: true,
+                    ticks: { precision: 0 } 
+                },
+                x: {
+                    grid: { display: false } 
+                }
+            }
+        }
     });
 </script>
 

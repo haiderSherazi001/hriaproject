@@ -30,6 +30,17 @@ class SubmissionController extends Controller
 
         $submissions = $query->latest()->get();
 
+        $timeframe = $request->timeframe ?? 'monthly'; 
+
+        $chartData = $submissions->sortBy('created_at')->groupBy(function($item) use ($timeframe) {
+            if ($timeframe == 'yearly') return $item->created_at->format('Y');
+            if ($timeframe == 'monthly') return $item->created_at->format('M Y');
+            return $item->created_at->format('M d'); 
+        })->map->count(); 
+
+        $chartLabels = $chartData->keys();
+        $chartValues = $chartData->values();
+
         $topCity = $submissions->countBy('city')->sortDesc()->keys()->first() ?? 'N/A';
         $topBatch = $submissions->countBy('batch')->sortDesc()->keys()->first() ?? 'N/A';
         $topContribution = $submissions->pluck('contributions')->flatten()->countBy()->sortDesc()->keys()->first() ?? 'N/A';
@@ -46,8 +57,7 @@ class SubmissionController extends Controller
             'other_status' => $submissions->where('status', 'Other')->count(),
         ];
         
-        return view('report', compact('submissions', 'stats', 'filterOptions'));
-    }
+        return view('report', compact('submissions', 'stats', 'filterOptions', 'chartLabels', 'chartValues', 'timeframe'));    }
 
     public function store(Request $request)
     {
