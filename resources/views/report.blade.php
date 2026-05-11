@@ -360,8 +360,18 @@
         $('#submissionsTable').DataTable({
             dom: '<"top"Bf>rt<"bottom"lip><"clear">', 
             buttons: [
-                { extend: 'excel', className: 'btn-custom btn-primary-custom', text: 'Export to Excel' },
-                { extend: 'print', className: 'btn-custom', text: 'Print Data' }
+                { 
+                    extend: 'excel', 
+                    className: 'btn-custom btn-primary-custom', 
+                    text: 'Export to Excel',
+                    exportOptions: { columns: [0, 2, 3, 4, 5, 6, 7] } 
+                },
+                { 
+                    extend: 'print', 
+                    className: 'btn-custom', 
+                    text: 'Print Data',
+                    exportOptions: { columns: [0, 2, 3, 4, 5, 6, 7] } 
+                }
             ],
             order: [],
             columnDefs: [
