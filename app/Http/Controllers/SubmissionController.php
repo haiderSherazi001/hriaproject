@@ -82,9 +82,14 @@ class SubmissionController extends Controller
         ]);
 
         if ($request->hasFile('photo')) {
-            $path = $request->file('photo')->store('photos', 'public');
-            $validated['photo_path'] = $path;
-        }
+        $file = $request->file('photo');
+        
+        $filename = time() . '_' . $file->getClientOriginalName();
+        
+        $file->move(public_path('photos'), $filename);
+        
+        $validated['photo_path'] = 'photos/' . $filename;
+    }
 
         Submission::create($validated);
 

@@ -308,8 +308,8 @@
                     <td style="text-align: center;">
                         @if($sub->photo_path)
                             <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                                <img src="{{ asset('storage/' . $sub->photo_path) }}" alt="Photo" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover; border: 1px solid var(--border);">
-                                <a href="{{ asset('storage/' . $sub->photo_path) }}" download class="btn-custom" style="padding: 2px 8px; font-size: 10px;">Download</a>
+                                <img src="{{ asset($sub->photo_path) }}" alt="Photo" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover; border: 1px solid var(--border);">
+                                <a href="{{ asset($sub->photo_path) }}" download class="btn-custom" style="padding: 2px 8px; font-size: 10px;">Download</a>
                             </div>
                         @else
                             <span style="font-size: 11px; color: #9ca3af; font-style: italic; padding: 10px;">No Photo</span>
@@ -363,7 +363,7 @@
                 { extend: 'excel', className: 'btn-custom btn-primary-custom', text: 'Export to Excel' },
                 { extend: 'print', className: 'btn-custom', text: 'Print Data' }
             ],
-            order: [[7, 'desc']],
+            order: [],
             columnDefs: [
                 { targets: 1, orderable: false }
             ],

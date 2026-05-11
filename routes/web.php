@@ -4,6 +4,9 @@ use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\AuthController;
 
 Route::get('/', function () { return view('welcome'); });
+Route::get('/join', function () { 
+    return view('join');
+});
 Route::post('/submit-form', [SubmissionController::class, 'store']);
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
