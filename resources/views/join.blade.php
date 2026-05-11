@@ -248,7 +248,6 @@
 </head>
 <body>
   <main class="container">
-    @auth
     <div style="display: flex; justify-content: flex-end; gap: 15px; margin-bottom: 20px;">
         
         <a href="/" style="text-decoration: none; background: var(--primary); color: white; padding: 10px 20px; font-weight: 600; border-radius: 8px; font-size: 14px; box-shadow: 0 2px 4px rgba(122, 79, 34, 0.1); transition: 0.2s;">
@@ -262,7 +261,6 @@
         @endauth
 
     </div>
-  @endauth
     <header class="header">
       <div class="badge">HRIA / HRSO</div>
       <h1>HRIA Scholar Talent Network Form</h1>

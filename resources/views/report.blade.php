@@ -176,7 +176,7 @@
                 <a href="/admin/report" class="btn-custom" style="color: #b42318; border-color: #fecdca; background: #fef3f2;">&times; Clear Filter</a>
             @endif
             
-            <a href="/" class="btn-custom">View Public Form</a>
+            <a href="/join" class="btn-custom">View Public Form</a>
 
             <a href="/admin/change-password" class="btn-custom" style="background: transparent; border-color: #e5e7eb;">🔑 Change Password</a>
             
